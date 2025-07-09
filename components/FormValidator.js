@@ -31,7 +31,6 @@ class FormValidator {
     } else {
       this._hideInputError(inputElement);
     }
-    console.log("turkey");
   }
 
   _hasInvalidInput() {
@@ -41,7 +40,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
@@ -81,8 +80,8 @@ class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.disabled = true;
+
+    this._toggleButtonState();
   }
 }
 

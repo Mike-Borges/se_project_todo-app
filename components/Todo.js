@@ -1,16 +1,19 @@
 class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, onUpdate) {
     this._data = data;
     this._templateElement = document.querySelector(selector);
+    this._onUpdate = onUpdate;
   }
 
   _setEventListeners() {
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
+      this._onUpdate();
     });
 
     this._todoDeleteBtn.addEventListener("click", () => {
       this._todoElement.remove();
+      this._onUpdate();
     });
   }
 

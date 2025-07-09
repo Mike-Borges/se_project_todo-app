@@ -14,4 +14,4 @@ Give a description of the technologies and techniques used. Pictures, GIFs, or s
 
 This project is deployed on GitHub Pages:
 
-- [(https://github.com/Mike-Borges/se_project_todo-app)]
+- [(https://mike-borges.github.io/se_project_todo-app/)]

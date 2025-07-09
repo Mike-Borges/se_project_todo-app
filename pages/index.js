@@ -19,7 +19,7 @@ const closeModal = (modal) => {
 };
 
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", updateCounter);
   const todoElement = todo.getView();
   return todoElement;
 };
@@ -31,6 +31,14 @@ addTodoButton.addEventListener("click", () => {
 addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
+
+const counterText = document.querySelector(".counter__text");
+
+function updateCounter() {
+  const todos = todosList.querySelectorAll(".todo");
+  const completedTodos = todosList.querySelectorAll(".todo__completed:checked");
+  counterText.textContent = `Showing ${completedTodos.length} out of ${todos.length} completed`;
+}
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
@@ -51,9 +59,11 @@ addTodoForm.addEventListener("submit", (evt) => {
   addTodoForm.reset();
   newTodoValidator.resetValidation();
   closeModal(addTodoPopup);
+  updateCounter();
 });
 
 initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+updateCounter();
